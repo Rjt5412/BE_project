@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>MediaSense|Form Page</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}">
+    </head>
+    <body>  
+        <div id="wordform">
+            <form>
+                <label for="search">Search:</label>
+                <input type="text" id="search" name="search">
+                <div id="params">
+				<div id="check">
+                    <div class="contain">
+                    <input type="checkbox" name="group1" id="checkbox1"><label for="checkbox1"><span class="checktext">Twitter</span></label>
+                    </div>
+                    <div class="contain">
+                    <input type="checkbox" name="group1" id="checkbox2"><label for="checkbox2"><span class="checktext">Google+</span></label>
+                    </div>
+                    <div class="contain">
+                    <input type="checkbox" name="group1" id="checkbox3"><label for="checkbox3"><span class="checktext">Tumblr</span></label>
+                    </div>
+					</div>    
+                    <div id="dropdown">
+                    <label for="category1">Category1:</label>    
+                    <select>
+                        <option value="#1">Option 1</option>
+                        <option value="#2">Option 2</option>
+                        <option value="#3">Option 3</option>
+                    </select>
+                    <label for="category2">Category2:</label>    
+                    <select>
+                        <option value="#1">Option 1</option>
+                        <option value="#2">Option 2</option>
+                        <option value="#3">Option 3</option>
+                    </select>    
+                    </div>    
+                    <input type ="submit" value="Search">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
