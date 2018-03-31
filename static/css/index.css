@@ -1,0 +1,103 @@
+body{
+    text-align: center;
+}
+
+.clearfix::after{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.big-text{
+    font-size: 4em;
+    margin: 3%;
+}
+
+.small-text{
+    margin:6%;
+}
+.circ-img{
+    margin:4%;
+    height: 25%;
+    width: 25%;
+    border-radius:50%;
+    border-color: azure;
+    border-width:5px;
+    border-style: solid;
+
+}
+table{
+    font-weight: 600;
+}
+
+.trending{
+    margin:8%;
+}
+#twitter{
+    width: 32%;
+    padding:1%;
+    margin: 5px;
+    background:	#3494D0;
+    display: inline-block;
+    box-sizing: border-box;
+
+}
+
+#google{
+    width: 32%;
+    padding:1%;
+    margin: 5px;
+    background:#f33;
+    display: inline-block;
+    box-sizing: border-box;
+
+}
+
+#tumblr{
+    width: 32%;
+    padding:1%;
+    margin: 5px;
+    background:#314359;
+    display: inline-block;
+    box-sizing: border-box;
+
+}
+
+#tumblr a,#google a,#twitter a{
+    text-decoration: none;
+    color:white;
+}
+
+#tumblr a:hover,#google a:hover,#twitter a:hover{
+    text-decoration: none;
+    color:white;
+}
+
+.search-btn a{
+    text-decoration: none;
+    text-align: center;
+    vertical-align: central;
+    font-size: 2em;
+    box-sizing:border-box;
+    display:inline-block;
+    text-decoration: none;
+    color: Black;
+    margin-top: 25px;
+    /*margin-bottom: 10px;*/
+    background-color: black;
+    width:75%;
+    height:60px;
+    color: white;
+}
+
+.search-btn a:hover{
+    text-decoration: none;
+    text-color:white;
+}
+
+.search-btn a:hover{
+    text-decoration: none;
+    color:Black;
+    margin-bottom: 5px;
+}
+

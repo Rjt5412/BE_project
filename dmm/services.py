@@ -1,5 +1,5 @@
 import tweepy
-import requests_oauthlib
+from requests_oauthlib import OAuth1
 import requests
 import pytumblr
 import pandas as pd
@@ -55,74 +55,109 @@ def get_tumblr_and_gplus_trends():
     return gplus_trends,tumblr_trends
 
 
-'''
-def get_twitter_data():
+
+def get_twitter_data(keyword):
     auth = OAuth1('lPFvtvMMoAyDGpuvRVcvO8XrW', 'iQ5PMIJgVrRh22nAOMTaSTPJTzo4AkR4dVHdBBC4DXA766dE5W',
                   '786113501924294656-rpS1oKPiMbOGuR1Ha8ydqxhjsk7HthR',
                   'QIpYa9ulI2VkkJA6eXGKmz3EN6LtenCiDaM68hPxI8WJc')
-
-    r = requests.get('https://api.twitter.com/1.1/search/tweets.json', params=dict(q='#sizzler', count=100), auth=auth)
+    r = requests.get('https://api.twitter.com/1.1/search/tweets.json', params=dict(q= keyword, count=100), auth=auth)
 
     result = dict(r.json())
 
     a = result["statuses"]
-    retweet = []
+    site = []
+    shares = []
     username = []
     # reply = []   //not available on API
-    date = []
-    location = []
+    likes = []
+    coeff = []
+    main_category = []
+    sub_category = []
+    ml_out = []
     for i in a:
      if i['user']['lang'] == 'en':
-        retweet.append(i["retweet_count"])
+        site.append('twitter')
+        shares.append(i["retweet_count"])
         username.append(i["user"]["name"])
-        location.append(i["user"]["location"])
-        date.append(i["created_at"])
+        likes.append(i["favorite_count"])
+        coeff.append('')
+        main_category.append('')
+        sub_category.append('')
      else:
         pass
 
-    returned ={}
 
-    for i in range(0, len(username)):
-        d = dict({'Username': username[i], 'Location': location[i], 'Date': date[i], 'Retweets': retweet[i]})
-        returned.append(d)
-    dr = {'data': returned}
+    d = dict({'Site': site, 'Username': username, 'Shares': shares, 'Likes': likes,
+                  'coefficient': coeff, 'Main_Category': main_category,
+                  'Sub_Category': sub_category})
+
+    return d
 
 
-def g_plus_data():
+def g_plus_data(keyword):
 
     url = 'https://www.googleapis.com/plus/v1/activities'
-    params = dict(query = 'cricket', language= 'English', maxResults=100, key='AIzaSyDPIIGBYm-TA9yrhQl5bw0J1CxkmMmQwk4')
+    params = dict(query = keyword, language= 'English', key='AIzaSyDPIIGBYm-TA9yrhQl5bw0J1CxkmMmQwk4')
     r = requests.get(url, params = params)
     response = dict(r.json())
     a = response["items"]
-    title = []
-    url = []
-    content = []
+    site = []
+    shares = []
+    username = []
+    likes = []
+    coeff = []
+    main_category = []
+    sub_category = []
+    ml_out = []
 
     for i in a:
-        title.append(i['title'])
-        url.append(i['url'])
-        content.append(i['object']['content'])
+        site.append('Google Plus')
+        username.append(i['actor']['displayName'])
+        likes.append(i['object']['plusoners']['totalItems'])
+        shares.append(i['object']['resharers']['totalItems'])
+        coeff.append('')
+        main_category.append('')
+        sub_category.append('')
 
-def get_tumblr_data():
+    d = dict({'Site': site, 'Username': username, 'Shares': shares, 'Likes': likes,
+              'coefficient': coeff, 'Main_Category': main_category,
+              'Sub_Category': sub_category})
+
+    return d
+
+def get_tumblr_data(keyword):
     
     # Authenticate via API Key
     client = pytumblr.TumblrRestClient('KceYzI17iR8jl5YjJuVUGi8n8XcmY2NbMUOJ69iDekszIGjxE3')
 
     # Make the request
-    response = client.tagged('cricket')
+    response = client.tagged(keyword)
     r = response[:300]
 
-    user_id = []
+    site = []
+    shares = []
+    username = []
     likes = []
-    summary = []
+    coeff = []
+    main_category = []
+    sub_category = []
+    ml_out = []
+
     x = 0
 
     for i in r:
-        user_id.append(i['blog_name'])
-        summary.append(i['summary'])
+        site.append('tumblr')
+        username.append(i['blog_name'])
+        coeff.append('')
+        main_category.append('')
+        sub_category.append('')
         likes.append(i['note_count'])
+
         x = x + 1
 
-    
-'''
+    d = dict({'Site': site, 'Username': username, 'Shares': shares, 'Likes': likes,
+              'coefficient': coeff, 'Main_Category': main_category,
+              'Sub_Category': sub_category})
+
+    return d
+

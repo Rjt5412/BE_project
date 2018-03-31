@@ -7,33 +7,36 @@
     </head>
     <body>  
         <div id="wordform">
-            <form>
+            <form action="{% url 'get_params' %}" method="post">
+                {% csrf_token %}
                 <label for="search">Search:</label>
                 <input type="text" id="search" name="search">
                 <div id="params">
 				<div id="check">
                     <div class="contain">
-                    <input type="checkbox" name="group1" id="checkbox1"><label for="checkbox1"><span class="checktext">Twitter</span></label>
+                    <input type="checkbox" name="twitter" id="checkbox1" value="abc"><label for="checkbox1"><span class="checktext">Twitter</span></label>
                     </div>
                     <div class="contain">
-                    <input type="checkbox" name="group1" id="checkbox2"><label for="checkbox2"><span class="checktext">Google+</span></label>
+                    <input type="checkbox" name="gplus" id="checkbox2" value="abc"><label for="checkbox2"><span class="checktext">Google+</span></label>
                     </div>
                     <div class="contain">
-                    <input type="checkbox" name="group1" id="checkbox3"><label for="checkbox3"><span class="checktext">Tumblr</span></label>
+                    <input type="checkbox" name="tumblr" id="checkbox3" value="abc"><label for="checkbox3"><span class="checktext">Tumblr</span></label>
                     </div>
 					</div>    
                     <div id="dropdown">
-                    <label for="category1">Category1:</label>    
-                    <select>
-                        <option value="#1">Option 1</option>
-                        <option value="#2">Option 2</option>
-                        <option value="#3">Option 3</option>
+                    <label for="category1">Main Category:</label>
+                    <select name="Main_Category">
+                        <option value="1">Sports</option>
+                        <option value="2">News</option>
+                        <option value="3">Entertainment</option>
+                        <option value="4">Lifestyle</option>
+                        <option value="5">Business</option>
                     </select>
-                    <label for="category2">Category2:</label>    
-                    <select>
-                        <option value="#1">Option 1</option>
-                        <option value="#2">Option 2</option>
-                        <option value="#3">Option 3</option>
+                    <label for="category2">Sub Category:</label>
+                    <select name="Sub_Category">
+                        <option value="10">Cricket</option>
+                        <option value="20">Football</option>
+                        <option value="30">Volleyball</option>
                     </select>    
                     </div>    
                     <input type ="submit" value="Search">

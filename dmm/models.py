@@ -7,6 +7,6 @@ class Posts_data(models.Model):
     likes = models.IntegerField()
     shares = models.IntegerField()
     coefficient = models.IntegerField()
-    comment = models.IntegerField()
     sub_category = models.CharField(max_length=400)
-
+    main_category = models.CharField(max_length=400)
+    ml_out = models.IntegerField()
