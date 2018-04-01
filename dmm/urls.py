@@ -5,4 +5,5 @@ urlpatterns =[
     url(r'^$', views.index, name='index'),
     url(r'^keysearch/$', views.search, name='search'),
     url(r'^get_params/$', views.get_params, name='get_params'),
+    url(r'^results/$', views.get_results, name='get_results'),
 ]

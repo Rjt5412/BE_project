@@ -4,10 +4,11 @@
     <head>
         <title>MediaSense|Form Page</title>
         <link rel="stylesheet" type="text/css" href="{% static 'css/search.css' %}">
+        {% block extra_head %}{% endblock %}
     </head>
     <body>  
         <div id="wordform">
-            <form action="{% url 'get_params' %}" method="post">
+            <form id="search_form" action="{% url 'get_params' %}" method="POST">
                 {% csrf_token %}
                 <label for="search">Search:</label>
                 <input type="text" id="search" name="search">
@@ -25,7 +26,7 @@
 					</div>    
                     <div id="dropdown">
                     <label for="category1">Main Category:</label>
-                    <select name="Main_Category">
+                    <select name="Main_Category" id="main_category">
                         <option value="1">Sports</option>
                         <option value="2">News</option>
                         <option value="3">Entertainment</option>
@@ -33,7 +34,7 @@
                         <option value="5">Business</option>
                     </select>
                     <label for="category2">Sub Category:</label>
-                    <select name="Sub_Category">
+                    <select name="Sub_Category" id="sub_category">
                         <option value="10">Cricket</option>
                         <option value="20">Football</option>
                         <option value="30">Volleyball</option>
@@ -43,5 +44,6 @@
                 </div>
             </form>
         </div>
+    {% block content %}{% endblock %}
     </body>
 </html>

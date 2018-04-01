@@ -12,6 +12,6 @@ a = 1
 b = 10
 
 def normalize(x, a, b, minLikes, maxLikes):
-	return (((b - a) * (x - minLikes))/(maxLikes - minLikes)) + a
+	return (((b - a) * (x - minLikes))/(maxLikes - minLikes+1)) + a
 
 #print(normalize(20,a,b,minLikes,maxLikes))

@@ -74,12 +74,14 @@ def get_twitter_data(keyword):
     main_category = []
     sub_category = []
     ml_out = []
+    url = []
+
     for i in a:
      if i['user']['lang'] == 'en':
-        site.append('twitter')
         shares.append(i["retweet_count"])
         username.append(i["user"]["name"])
         likes.append(i["favorite_count"])
+        url.append("https://twitter.com/i/web/status/" + i['id_str'])
         coeff.append('')
         main_category.append('')
         sub_category.append('')
@@ -87,9 +89,9 @@ def get_twitter_data(keyword):
         pass
 
 
-    d = dict({'Site': site, 'Username': username, 'Shares': shares, 'Likes': likes,
+    d = dict({'Username': username, 'Shares': shares, 'Likes': likes,
                   'coefficient': coeff, 'Main_Category': main_category,
-                  'Sub_Category': sub_category})
+                  'Sub_Category': sub_category, 'url': url})
 
     return d
 
@@ -109,19 +111,21 @@ def g_plus_data(keyword):
     main_category = []
     sub_category = []
     ml_out = []
+    url = []
 
     for i in a:
         site.append('Google Plus')
         username.append(i['actor']['displayName'])
         likes.append(i['object']['plusoners']['totalItems'])
         shares.append(i['object']['resharers']['totalItems'])
+        url.append(i['object']['url'])
         coeff.append('')
         main_category.append('')
         sub_category.append('')
 
     d = dict({'Site': site, 'Username': username, 'Shares': shares, 'Likes': likes,
               'coefficient': coeff, 'Main_Category': main_category,
-              'Sub_Category': sub_category})
+              'Sub_Category': sub_category, 'url': url})
 
     return d
 
@@ -142,6 +146,7 @@ def get_tumblr_data(keyword):
     main_category = []
     sub_category = []
     ml_out = []
+    url = []
 
     x = 0
 
@@ -149,6 +154,7 @@ def get_tumblr_data(keyword):
         site.append('tumblr')
         username.append(i['blog_name'])
         coeff.append('')
+        url.append('post_url')
         main_category.append('')
         sub_category.append('')
         likes.append(i['note_count'])
@@ -157,7 +163,7 @@ def get_tumblr_data(keyword):
 
     d = dict({'Site': site, 'Username': username, 'Shares': shares, 'Likes': likes,
               'coefficient': coeff, 'Main_Category': main_category,
-              'Sub_Category': sub_category})
+              'Sub_Category': sub_category, 'url': url})
 
     return d
 
