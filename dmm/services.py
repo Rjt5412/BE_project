@@ -73,8 +73,8 @@ def get_twitter_data(keyword):
     coeff = []
     main_category = []
     sub_category = []
-    ml_out = []
     url = []
+    user_url = []
 
     for i in a:
      if i['user']['lang'] == 'en':
@@ -82,6 +82,7 @@ def get_twitter_data(keyword):
         username.append(i["user"]["name"])
         likes.append(i["favorite_count"])
         url.append("https://twitter.com/i/web/status/" + i['id_str'])
+        user_url.append("https://twitter.com/" + i["user"]["name"])
         coeff.append('')
         main_category.append('')
         sub_category.append('')
@@ -110,8 +111,8 @@ def g_plus_data(keyword):
     coeff = []
     main_category = []
     sub_category = []
-    ml_out = []
     url = []
+    user_url = []
 
     for i in a:
         site.append('Google Plus')
@@ -145,8 +146,8 @@ def get_tumblr_data(keyword):
     coeff = []
     main_category = []
     sub_category = []
-    ml_out = []
     url = []
+    user_url = []
 
     x = 0
 

@@ -1,6 +1,46 @@
 body{
     text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    background: #c5c5c5;
 }
+
+/**** NAVBAR CSS ****/
+
+.nav_container{
+    width:100%;
+	overflow: hidden;
+	background: #333;
+	font-weight: bolder;
+	font-family: 'Open Sans', sans-serif;
+    margin-bottom: 10px;
+
+
+}
+
+.nav_container a{
+	float:left;
+	color: #3CC47C;
+  	text-align: center;
+  	padding: 14px 25px;
+  	text-decoration: none;
+  	font-size: 17px;
+
+}
+
+.nav_container a:hover {
+  background-color: #ddd;
+  color: #3CC47C;
+  text-decoration: none;
+}
+
+.nav_text{
+    text-decoration: none;
+	padding: 12px 12px;
+}
+
+
+
+/****CONTENT CSS****/
 
 .clearfix::after{
     content: "";
@@ -10,94 +50,124 @@ body{
 
 .big-text{
     font-size: 4em;
-    margin: 3%;
-}
-
-.small-text{
-    margin:6%;
-}
-.circ-img{
-    margin:4%;
-    height: 25%;
-    width: 25%;
-    border-radius:50%;
-    border-color: azure;
-    border-width:5px;
-    border-style: solid;
-
-}
-table{
-    font-weight: 600;
-}
-
-.trending{
-    margin:8%;
-}
-#twitter{
-    width: 32%;
-    padding:1%;
-    margin: 5px;
-    background:	#3494D0;
-    display: inline-block;
-    box-sizing: border-box;
-
-}
-
-#google{
-    width: 32%;
-    padding:1%;
-    margin: 5px;
-    background:#f33;
-    display: inline-block;
-    box-sizing: border-box;
-
-}
-
-#tumblr{
-    width: 32%;
-    padding:1%;
-    margin: 5px;
-    background:#314359;
-    display: inline-block;
-    box-sizing: border-box;
-
-}
-
-#tumblr a,#google a,#twitter a{
-    text-decoration: none;
-    color:white;
-}
-
-#tumblr a:hover,#google a:hover,#twitter a:hover{
-    text-decoration: none;
-    color:white;
-}
-
-.search-btn a{
-    text-decoration: none;
-    text-align: center;
-    vertical-align: central;
-    font-size: 2em;
-    box-sizing:border-box;
-    display:inline-block;
-    text-decoration: none;
-    color: Black;
-    margin-top: 25px;
-    /*margin-bottom: 10px;*/
-    background-color: black;
-    width:75%;
-    height:60px;
+    margin: 2%;
     color: white;
 }
 
-.search-btn a:hover{
-    text-decoration: none;
-    text-color:white;
+.small-text{
+    font-size: 2em;
+    margin:4%;
+    color: #333;
+    font-weight: 700;
+}
+.circ-img{
+    margin: 6%;
+    height: 25%;
+    width: 25%;
+    border-radius:50%;
+
 }
 
-.search-btn a:hover{
-    text-decoration: none;
-    color:Black;
-    margin-bottom: 5px;
+/** TABLE CSS **/
+table{
+    margin-top:25px;
+    font-weight: 700;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 20px;
+    /*border: 2px solid #3CC47C;*/
+    border-radius: 10px;
 }
+
+th{
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #c5c5c5;
+    border-bottom: 2px solid #3CC47C;
+}
+
+
+td{
+    border-bottom: 2px solid #3CC47C;
+    padding: 16px;
+    background-color: #c5c5c5;
+}
+
+td:hover{
+    color: #ddd;
+    background: #333;
+}
+
+tr:last-child{
+    border-radius: 10px;
+}
+
+#twitter a{
+    text-decoration:none;
+    color: #00aced;
+}
+
+#google a{
+    text-decoration:none;
+    color: #FF6A5C;
+}
+
+#tumblr a{
+    text-decoration:none;
+    color: #34526f;
+}
+
+
+/**DIVS **/
+
+#twitter:hover, #google:hover, #tumblr:hover{
+    /*border-radius: 5px;*/
+    box-shadow: 0 0 15px rgba(60, 196, 124, 1);
+}
+
+
+#twitter{
+
+    text-align: center;
+    width: 32%;
+    padding:1%;
+    margin: 5px;
+    background:	#333;
+    display: inline-block;
+    box-sizing: border-box;
+
+}
+
+
+#google{
+    text-align: center;
+    width: 32%;
+    padding:1%;
+    margin: 5px;
+    background: #333;
+    display: inline-block;
+    box-sizing: border-box;
+
+}
+
+
+#tumblr{
+    text-align: center;
+    width: 32%;
+    padding:1%;
+    margin: 5px;
+    background: #333;
+    display: inline-block;
+    box-sizing: border-box;
+
+}
+
+
+
+
+
+
+
 

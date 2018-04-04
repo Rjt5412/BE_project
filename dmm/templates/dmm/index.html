@@ -3,19 +3,30 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <title>
             MediaSense|Home
         </title>
     </head>
-    <body><div class="clearfix">
+    <body>
+    <div class="nav_container">
+		<a href="{% url 'index' %}"><span class="glyphicon glyphicon-home"></span><span class="nav_text">Home</span></a>
+  		<a href="{% url 'search' %}"><span class="glyphicon glyphicon-search"></span><span class="nav_text">Search</span></a>
+  		<a href="{% url 'about_us' %}"><span class="glyphicon glyphicon-info-sign"></span><span class="nav_text">About</span></a>
+	</div>
+    <div class="clearfix">
         <div id="twitter">
-            <h1 class="big-text">Twitter</h1>
+            <h1 class="big-text twitter_shadow">Twitter</h1>
             <img class="circ-img" src="{% static 'Images/twitter.png' %}">
             <div class="trending">
-                <h2 class="small-text">Trending</h2>
-                <table class="table table-dark">
+                <table>
+                <tr>
+                        <th>
+                            <h2 class="small-text">Trending</h2>
+                        </th>
+                </tr>
                 {% for hashtag,url in twitter_trends %}
                     <tr>
                         <td>
@@ -27,11 +38,15 @@
             </div>
         </div>
         <div id="google">
-            <h1 class="big-text">Google+</h1>
+            <h1 class="big-text google_shadow">Google+</h1>
             <img class="circ-img" src="{% static 'Images/gplus.jpg' %}">
             <div class="trending">
-                <h2 class="small-text">Trending</h2>
-                <table class="table table-dark">
+                <table>
+                <tr>
+                        <th>
+                            <h2 class="small-text">Trending</h2>
+                        </th>
+                </tr>
                 {% for hashtag,url in gplus_trends %}
                     <tr>
                         <td>
@@ -43,11 +58,15 @@
             </div>
         </div>
         <div id="tumblr">
-            <h1 class="big-text">Tumblr</h1>
+            <h1 class="big-text tumblr_shadow">Tumblr</h1>
             <img class="circ-img" src="{% static 'Images/tumblr.png' %}">
             <div class="trending">
-                <h2 class="small-text">Trending</h2>
-                <table class="table table-dark">
+                <table>
+                <tr>
+                        <th>
+                            <h2 class="small-text">Trending</h2>
+                        </th>
+                </tr>
                 {% for hashtag,url in tumblr_trends %}
                     <tr>
                         <td>
@@ -58,10 +77,6 @@
                 </table>
             </div>
         </div>
-        <div class="search-btn">
-            <a href ="{% url 'search' %}"><h5 style="color:white ; margin-top:18px;">Search</h5></a>
-        </div>
-        <a href = "{% url 'get_results' %}">Results</a>
         </div>
     </body>
 </html>

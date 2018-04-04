@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+        <title>MediaSense|About</title>
+</head>
+<body>
+    <div class="nav_container">
+		<a class="active" href="{% url 'index' %}"><span class="glyphicon glyphicon-home"></span><span class="nav_text">Home</span></a>
+  		<a href="{% url 'search' %}"><span class="glyphicon glyphicon-search"></span><span class="nav_text">Search</span></a>
+  		<a href="{% url 'about_us' %}"><span class="glyphicon glyphicon-info-sign"></span><span class="nav_text">About</span></a>
+	</div>
+    <p>Content</p>
+</body>
+</html>

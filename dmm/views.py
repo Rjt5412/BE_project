@@ -92,7 +92,7 @@ def get_params(request):
                 p.save()
 
 
-            posts = models.Posts_data.objects.filter(ml_out= ml_out[0])
+        posts = models.Posts_data.objects.filter(ml_out= ml_out[0])
 
 
 
@@ -100,6 +100,5 @@ def get_params(request):
     else:
         return render(request, 'dmm/search.html')
 
-
-def get_results(request):
-    return render(request, 'dmm/results.html')
+def about_us(request):
+    return render(request, 'dmm/about_us.html')

@@ -7,23 +7,23 @@
     <div id="disp_results">
 <table>
     <tr>
-        <th>Username</th>
-        <th>Likes</th>
-        <th>Shares</th>
-        <th>Coefficient</th>
-        <th>Category</th>
-        <th>Platform</th>
-        <th>Url</th>
+        <th class="small-text">Username</th>
+        <th class="small-text">Likes</th>
+        <th class="small-text">Shares</th>
+        <th class="small-text">Coefficient</th>
+        <th class="small-text">Category</th>
+        <th class="small-text">Platform</th>
     </tr>
     {% for i in post %}
     <tr>
         <td>{{ i.username }}</td>
+        <a href ="{{ i.url }}">
         <td>{{ i.likes }}</td>
         <td>{{ i.shares }}</td>
         <td>{{ i.coefficient }}</td>
         <td>Sports</td>
         <td>{{ i.site }}</td>
-        <td>{{ i.url }}</td>
+        </a>
     </tr>
     {% endfor %}
     <tr>
@@ -45,3 +45,4 @@
 </table>
     </div>
 {% endblock %}
+
