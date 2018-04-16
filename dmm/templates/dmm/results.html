@@ -16,32 +16,14 @@
     </tr>
     {% for i in post %}
     <tr>
-        <td>{{ i.username }}</td>
-        <a href ="{{ i.url }}">
-        <td>{{ i.likes }}</td>
-        <td>{{ i.shares }}</td>
-        <td>{{ i.coefficient }}</td>
-        <td>Sports</td>
-        <td>{{ i.site }}</td>
-        </a>
+        <td><a href="{{ i.user_url }}">{{ i.username }}</a></td>
+        <td><a href ="{{ i.url }}">{{ i.likes }}</a></td>
+        <td><a href ="{{ i.url }}">{{ i.shares }}</a></td>
+        <td><a href ="{{ i.url }}">{{ i.coefficient }}</a></td>
+        <td><a href ="{{ i.url }}">Sports</a></td>
+        <td><a href ="{{ i.url }}">{{ i.site }}</a></td>
     </tr>
     {% endfor %}
-    <tr>
-        <td>Rjt</td>
-        <td>25</td>
-        <td>35</td>
-        <td>0.5</td>
-        <td>Sports</td>
-        <td>Twitter</td>
-    </tr>
-    <tr>
-        <td>Rjt</td>
-        <td>25</td>
-        <td>35</td>
-        <td>0.5</td>
-        <td>Sports</td>
-        <td>Twitter</td>
-    </tr>
 </table>
     </div>
 {% endblock %}

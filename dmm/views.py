@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from . import services,convert
-from . import ml
-from . import models
+from . import ml,models,services,convert,serializers
+from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.response import Response
+from rest_framework import status
+
 
 
 # Create your views here.
@@ -44,17 +47,17 @@ def get_params(request):
 
         if gplus!= None:
             gplus_data = services.g_plus_data(keyword)
-            gplus_max = max(gplus_data['Likes'])
-            gplus_min = min(gplus_data['Likes'])
+            gplus_max = max(max(gplus_data['Likes']),max(gplus_data['Shares']))
+            gplus_min = min(min(gplus_data['Likes']),min(gplus_data['Shares']))
             for i in range(0, (len(gplus_data['Likes']))):
-                gplus_data['coefficient'][i] = convert.normalize(gplus_data['Likes'][i], (int(sub_category) - 9),
+                gplus_data['coefficient'][i] = convert.normalize(((gplus_data['Likes'][i])+(gplus_data['Shares'][i])), (int(sub_category) - 9),
                                                                  int(sub_category), gplus_min, gplus_max)
 
-            for i, j, k, l, m in zip(gplus_data['Username'], gplus_data['Likes'],
-                                  gplus_data['Shares'], gplus_data['coefficient'], gplus_data['url']):
-                p = models.Posts_data.objects.create(site='Google Plus', username=i, likes=int(j),
+            for i, j, k, l, m, n in zip(gplus_data['Username'], gplus_data['Likes'],
+                                  gplus_data['Shares'], gplus_data['coefficient'], gplus_data['url'], gplus_data['user_url']):
+                p = models.Posts_data(site='Google Plus', username=i, likes=int(j),
                                                      shares=int(k), coefficient=float(l), url=m,
-                                                     ml_out=int(ml_out[0]))
+                                                     ml_out=ml_out[0], user_url = n)
 
                 p.save()
 
@@ -63,16 +66,16 @@ def get_params(request):
 
         if twitter!= None:
             twitter_data = services.get_twitter_data(keyword)
-            twitter_max = max(twitter_data['Likes'])
-            twitter_min = min(twitter_data['Likes'])
+            twitter_max = max(max(twitter_data['Likes']),max(twitter_data['Shares']))
+            twitter_min = min(min(twitter_data['Likes']),min(twitter_data['Shares']))
             for i in range(0, (len(twitter_data['Likes']))):
-                twitter_data['coefficient'][i] = convert.normalize(twitter_data['Likes'][i], (int(sub_category) - 9),
+                twitter_data['coefficient'][i] = convert.normalize((twitter_data['Likes'][i]+(twitter_data['Shares'][i])), (int(sub_category) - 9),
                                                                    int(sub_category), twitter_min, twitter_max)
 
-            for i, j, k, l, m in zip(twitter_data['Username'], twitter_data['Likes'],
-                                  twitter_data['Shares'], twitter_data['coefficient'], twitter_data['url']):
-                p = models.Posts_data.objects.create(site='Twitter', username=i, likes=j, shares=k,
-                                      coefficient=l, ml_out=ml_out[0], url=m)
+            for i, j, k, l, m, n in zip(twitter_data['Username'], twitter_data['Likes'],
+                                  twitter_data['Shares'], twitter_data['coefficient'], twitter_data['url'], twitter_data['user_url']):
+                p = models.Posts_data(site='Twitter', username=i, likes=j, shares=k,
+                                      coefficient=l, ml_out=ml_out[0], url=m, user_url=n)
                 p.save()
 
 
@@ -84,10 +87,10 @@ def get_params(request):
                 tumblr_data['coefficient'][i] = convert.normalize(tumblr_data['Likes'][i], (int(sub_category) - 9),
                                                                   int(sub_category), tumblr_min, tumblr_max)
 
-            for i, j, l, m in zip(tumblr_data['Username'], tumblr_data['Likes'],
-                               tumblr_data['coefficient'], tumblr_data['url']):
-                p = models.Posts_data.objects.create(site='Tumblr', username=i, likes=j, shares=0,
-                                      coefficient=l, ml_out=ml_out[0], url=m)
+            for i, j, l, m, n in zip(tumblr_data['Username'], tumblr_data['Likes'],
+                               tumblr_data['coefficient'], tumblr_data['url'], tumblr_data['user_url']):
+                p = models.Posts_data(site='Tumblr', username=i, likes=j, shares=0,
+                                      coefficient=l, ml_out=ml_out[0], url=m, user_url=n)
 
                 p.save()
 
@@ -102,3 +105,25 @@ def get_params(request):
 
 def about_us(request):
     return render(request, 'dmm/about_us.html')
+
+'''
+# Dropdowns view functions
+
+#for main category
+@api_view(['GET'])
+@csrf_exempt
+def get_main_category(request):
+    main_cat_obj = models.Main_Category.objects.all()
+    main_cat_serializer = serializers.MainCategorySerializer(main_cat_obj, many=True)
+    response = Response(main_cat_serializer.data)
+    return Response(response.data, status= status.HTTP_200_OK)
+
+#for sub category
+@api_view(['GET'])
+@csrf_exempt
+def get_sub_category(request,m_id):
+    sub_cat_obj = models.Sub_Category.objects.filter(main_category_model=m_id)
+    sub_cat_serializer = serializers.MainCategorySerializer(sub_cat_obj, many=True)
+    response = Response(sub_cat_serializer.data)
+    return Response(response.data, status=status.HTTP_200_OK)
+'''

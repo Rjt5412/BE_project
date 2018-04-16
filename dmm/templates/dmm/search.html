@@ -45,6 +45,21 @@
                         <option value="10">Cricket</option>
                         <option value="20">Football</option>
                         <option value="30">Volleyball</option>
+                        <option value="40">Hockey</option>
+                        <option value="10">Local</option>
+                        <option value="20">International</option>
+                        <option value="30">Regional</option>
+                        <option value="40">Politics</option>
+                        <option value="10">Bollywood</option>
+                        <option value="20">Hollywood</option>
+                        <option value="30">Hindi Music</option>
+                        <option value="40">English Music</option>
+                        <option value="10">Food</option>
+                        <option value="20">Travel</option>
+                        <option value="30">Shopping</option>
+                        <option value="10">Private</option>
+                        <option value="20">Public</option>
+                        <option value="30">Startup</option>
                     </select>    
                     </div>    
                     <input type ="submit" value="Search">
@@ -54,3 +69,34 @@
     {% block content %}{% endblock %}
     </body>
 </html>
+
+<!--
+<script type = "text/javascript">
+    $select = $('#main_category');
+    $.ajax({
+        url: "",
+        dataType: 'JSON',
+        success:function(data){
+            $.each(data, function (key, val) {
+                $select.append('<option value ="' + val.id + '">' + val.main_category_model + '</option>');
+            });
+            getSubCategory();
+        }
+    });
+
+    function getSubCategory(){
+        $select = $('#sub_category');
+        var m_id =($("select[name = 'Main_Category'] option:selected").attr('value'));
+        m_id_url = "";
+        f_url = m_id_url.replace( abc, m_id);
+        $.ajax({
+            url:f_url,
+            dataType:'JSON',
+            success:function (data1) {
+                $select.html('');
+                $.each.append('<option value ="' + val.id + '">' + val.sub_category_model + '</option>')
+            }
+        });
+    }
+</script>
+-->

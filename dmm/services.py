@@ -82,7 +82,7 @@ def get_twitter_data(keyword):
         username.append(i["user"]["name"])
         likes.append(i["favorite_count"])
         url.append("https://twitter.com/i/web/status/" + i['id_str'])
-        user_url.append("https://twitter.com/" + i["user"]["name"])
+        user_url.append("https://twitter.com/intent/user?user_id=" + i["user"]["id_str"])
         coeff.append('')
         main_category.append('')
         sub_category.append('')
@@ -92,7 +92,7 @@ def get_twitter_data(keyword):
 
     d = dict({'Username': username, 'Shares': shares, 'Likes': likes,
                   'coefficient': coeff, 'Main_Category': main_category,
-                  'Sub_Category': sub_category, 'url': url})
+                  'Sub_Category': sub_category, 'url': url, 'user_url':user_url})
 
     return d
 
@@ -120,13 +120,14 @@ def g_plus_data(keyword):
         likes.append(i['object']['plusoners']['totalItems'])
         shares.append(i['object']['resharers']['totalItems'])
         url.append(i['object']['url'])
+        user_url.append(i['actor']['url'])
         coeff.append('')
         main_category.append('')
         sub_category.append('')
 
     d = dict({'Site': site, 'Username': username, 'Shares': shares, 'Likes': likes,
               'coefficient': coeff, 'Main_Category': main_category,
-              'Sub_Category': sub_category, 'url': url})
+              'Sub_Category': sub_category, 'url': url, 'user_url':user_url})
 
     return d
 
@@ -155,16 +156,17 @@ def get_tumblr_data(keyword):
         site.append('tumblr')
         username.append(i['blog_name'])
         coeff.append('')
-        url.append('post_url')
+        url.append(i['post_url'])
         main_category.append('')
         sub_category.append('')
         likes.append(i['note_count'])
+        user_url.append("https://" + i['blog_name'] + ".tumblr.com")
 
         x = x + 1
 
     d = dict({'Site': site, 'Username': username, 'Shares': shares, 'Likes': likes,
               'coefficient': coeff, 'Main_Category': main_category,
-              'Sub_Category': sub_category, 'url': url})
+              'Sub_Category': sub_category, 'url': url, 'user_url':user_url})
 
     return d
 
