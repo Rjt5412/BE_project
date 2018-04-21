@@ -47,15 +47,15 @@ def get_params(request):
 
         if gplus!= None:
             gplus_data = services.g_plus_data(keyword)
-            gplus_max = max(max(gplus_data['Likes']),max(gplus_data['Shares']))
-            gplus_min = min(min(gplus_data['Likes']),min(gplus_data['Shares']))
+            gplus_max = (max(gplus_data['Likes']) + max(gplus_data['Shares']))
+            gplus_min = (min(gplus_data['Likes']) + min(gplus_data['Shares']))
             for i in range(0, (len(gplus_data['Likes']))):
                 gplus_data['coefficient'][i] = convert.normalize(((gplus_data['Likes'][i])+(gplus_data['Shares'][i])), (int(sub_category) - 9),
                                                                  int(sub_category), gplus_min, gplus_max)
 
             for i, j, k, l, m, n in zip(gplus_data['Username'], gplus_data['Likes'],
                                   gplus_data['Shares'], gplus_data['coefficient'], gplus_data['url'], gplus_data['user_url']):
-                p = models.Posts_data(site='Google Plus', username=i, likes=int(j),
+                p = models.Posts_data.objects.create(site='Google Plus', username=i, likes=int(j),
                                                      shares=int(k), coefficient=float(l), url=m,
                                                      ml_out=ml_out[0], user_url = n)
 
@@ -66,8 +66,8 @@ def get_params(request):
 
         if twitter!= None:
             twitter_data = services.get_twitter_data(keyword)
-            twitter_max = max(max(twitter_data['Likes']),max(twitter_data['Shares']))
-            twitter_min = min(min(twitter_data['Likes']),min(twitter_data['Shares']))
+            twitter_max = (max(twitter_data['Likes']) + max(twitter_data['Shares']))
+            twitter_min = (min(twitter_data['Likes']) + min(twitter_data['Shares']))
             for i in range(0, (len(twitter_data['Likes']))):
                 twitter_data['coefficient'][i] = convert.normalize((twitter_data['Likes'][i]+(twitter_data['Shares'][i])), (int(sub_category) - 9),
                                                                    int(sub_category), twitter_min, twitter_max)

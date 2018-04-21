@@ -11,17 +11,15 @@
         <th class="small-text">Likes</th>
         <th class="small-text">Shares</th>
         <th class="small-text">Coefficient</th>
-        <th class="small-text">Category</th>
         <th class="small-text">Platform</th>
     </tr>
     {% for i in post %}
     <tr>
-        <td><a href="{{ i.user_url }}">{{ i.username }}</a></td>
-        <td><a href ="{{ i.url }}">{{ i.likes }}</a></td>
-        <td><a href ="{{ i.url }}">{{ i.shares }}</a></td>
-        <td><a href ="{{ i.url }}">{{ i.coefficient }}</a></td>
-        <td><a href ="{{ i.url }}">Sports</a></td>
-        <td><a href ="{{ i.url }}">{{ i.site }}</a></td>
+        <td><a href="{{ i.user_url }}" target="blank">{{ i.username }}</a></td>
+        <td><a href ="{{ i.url }}" target="blank">{{ i.likes }}</a></td>
+        <td><a href ="{{ i.url }}" target="blank">{{ i.shares }}</a></td>
+        <td><a href ="{{ i.url }}" target="blank">{{ i.coefficient }}</a></td>
+        <td><a href ="{{ i.url }}" target="blank">{{ i.site }}</a></td>
     </tr>
     {% endfor %}
 </table>
