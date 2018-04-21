@@ -119,6 +119,11 @@ tr:last-child{
     color: #34526f;
 }
 
+.table_anchor{
+    display: block;
+    height:100%;
+    width: 100%;
+}
 
 /**DIVS **/
 
@@ -163,7 +168,6 @@ tr:last-child{
     box-sizing: border-box;
 
 }
-
 
 
 

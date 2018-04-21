@@ -15,11 +15,11 @@
     </tr>
     {% for i in post %}
     <tr>
-        <td><a href="{{ i.user_url }}" target="blank">{{ i.username }}</a></td>
-        <td><a href ="{{ i.url }}" target="blank">{{ i.likes }}</a></td>
-        <td><a href ="{{ i.url }}" target="blank">{{ i.shares }}</a></td>
-        <td><a href ="{{ i.url }}" target="blank">{{ i.coefficient }}</a></td>
-        <td><a href ="{{ i.url }}" target="blank">{{ i.site }}</a></td>
+        <td><a href="{{ i.user_url }}" target="_blank">{{ i.username }}</a></td>
+        <td><a href ="{{ i.url }}" target="_blank">{{ i.likes }}</a></td>
+        <td><a href ="{{ i.url }}" target="_blank">{{ i.shares }}</a></td>
+        <td><a href ="{{ i.url }}" target="_blank">{{ i.coefficient }}</a></td>
+        <td><a href ="{{ i.url }}" target="_blank">{{ i.site }}</a></td>
     </tr>
     {% endfor %}
 </table>

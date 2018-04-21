@@ -47,11 +47,14 @@ def get_params(request):
 
         if gplus!= None:
             gplus_data = services.g_plus_data(keyword)
-            gplus_max = (max(gplus_data['Likes']) + max(gplus_data['Shares']))
-            gplus_min = (min(gplus_data['Likes']) + min(gplus_data['Shares']))
+            gplus_max = (max(gplus_data['Shares']) + max(gplus_data['Likes']))
+            gplus_min = (min(gplus_data['Shares']) + min(gplus_data['Likes']))
             for i in range(0, (len(gplus_data['Likes']))):
-                gplus_data['coefficient'][i] = convert.normalize(((gplus_data['Likes'][i])+(gplus_data['Shares'][i])), (int(sub_category) - 9),
+                complete_float_gplus = convert.normalize(((gplus_data['Shares'][i]) + gplus_data['Likes'][i]), (int(sub_category) - 9),
                                                                  int(sub_category), gplus_min, gplus_max)
+
+
+                gplus_data['coefficient'][i] = float("{0:.2f}".format(complete_float_gplus))
 
             for i, j, k, l, m, n in zip(gplus_data['Username'], gplus_data['Likes'],
                                   gplus_data['Shares'], gplus_data['coefficient'], gplus_data['url'], gplus_data['user_url']):
@@ -66,11 +69,13 @@ def get_params(request):
 
         if twitter!= None:
             twitter_data = services.get_twitter_data(keyword)
-            twitter_max = (max(twitter_data['Likes']) + max(twitter_data['Shares']))
-            twitter_min = (min(twitter_data['Likes']) + min(twitter_data['Shares']))
+            twitter_max = (max(twitter_data['Shares']) + max(twitter_data['Likes']))
+            twitter_min = (min(twitter_data['Shares']) + min(twitter_data['Likes']))
             for i in range(0, (len(twitter_data['Likes']))):
-                twitter_data['coefficient'][i] = convert.normalize((twitter_data['Likes'][i]+(twitter_data['Shares'][i])), (int(sub_category) - 9),
+                complete_float_twitter = convert.normalize(((twitter_data['Shares'][i]) + (twitter_data['Likes'][i])), (int(sub_category) - 9),
                                                                    int(sub_category), twitter_min, twitter_max)
+
+                twitter_data['coefficient'][i] = float("{0:.2f}".format(complete_float_twitter))
 
             for i, j, k, l, m, n in zip(twitter_data['Username'], twitter_data['Likes'],
                                   twitter_data['Shares'], twitter_data['coefficient'], twitter_data['url'], twitter_data['user_url']):
@@ -84,8 +89,10 @@ def get_params(request):
             tumblr_max = max(tumblr_data['Likes'])
             tumblr_min = min(tumblr_data['Likes'])
             for i in range(0, (len(tumblr_data['Likes']))):
-                tumblr_data['coefficient'][i] = convert.normalize(tumblr_data['Likes'][i], (int(sub_category) - 9),
+                complete_float_tumblr = convert.normalize(tumblr_data['Likes'][i], (int(sub_category) - 9),
                                                                   int(sub_category), tumblr_min, tumblr_max)
+
+                tumblr_data['coefficient'][i] = float("{0:.2f}".format(complete_float_tumblr))
 
             for i, j, l, m, n in zip(tumblr_data['Username'], tumblr_data['Likes'],
                                tumblr_data['coefficient'], tumblr_data['url'], tumblr_data['user_url']):
@@ -94,8 +101,8 @@ def get_params(request):
 
                 p.save()
 
-
-        posts = models.Posts_data.objects.filter(ml_out= ml_out[0])
+        print(ml_out[0])
+        posts = models.Posts_data.objects.filter(ml_out= ml_out[0]).order_by('-coefficient')
 
 
 

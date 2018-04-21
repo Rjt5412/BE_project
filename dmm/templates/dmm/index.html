@@ -30,7 +30,7 @@
                 {% for hashtag,url in twitter_trends %}
                     <tr>
                         <td>
-                            <a href="{{ url }}" target="blank">{{ hashtag }}</a>
+                            <a class="table_anchor" href="{{ url }}" target="_blank">{{ hashtag }}</a>
                         </td>    
                     </tr>
                 {% endfor %}
@@ -50,7 +50,7 @@
                 {% for hashtag,url in gplus_trends %}
                     <tr>
                         <td>
-                            <a href="{{ url }}" target="blank">{{ hashtag }}</a>
+                            <a class="table_anchor" href="{{ url }}" target="_blank">{{ hashtag }}</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -70,7 +70,7 @@
                 {% for hashtag,url in tumblr_trends %}
                     <tr>
                         <td>
-                            <a href="{{ url }}" target="blank">{{ hashtag }}</a>
+                            <a class="table_anchor" href="{{ url }}" target="_blank">{{ hashtag }}</a>
                         </td>
                     </tr>
                 {% endfor %}
